@@ -5,7 +5,8 @@ WORKDIR /app
 # Install json-server globally
 RUN npm install -g json-server
 
-# Copy the database file
+# Create db directory and copy the database file
+RUN mkdir -p /app/db
 COPY db/db.json /app/db/db.json
 
 # Expose port 3000
