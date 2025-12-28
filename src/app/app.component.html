@@ -1,25 +1,38 @@
-<nav class="navbar navbar-expand-lg  " style="background-color: #f50057">
-  <a class="navbar-brand text-light" href="#">&nbsp;Locations management</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="add">Add location</a>
-      <!-- <a class="nav-item nav-link" routerLink="update">Update location</a> -->
-      <a class="nav-item nav-link" routerLink="list">List of locations</a>
-      <!-- <a class="nav-item nav-link" routerLink="login">Login</a>
-      <a class="nav-item nav-link" routerLink="register">Register</a> -->
+<nav class="navbar navbar-expand-lg glass shadow-modern" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white fw-bold fs-4" href="#">
+      <i class="fas fa-map-marker-alt me-2"></i>Locations Hub
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link text-white fw-500 me-3" routerLink="add">
+          <i class="fas fa-plus me-1"></i>Add Location
+        </a>
+        <a class="nav-link text-white fw-500" routerLink="list">
+          <i class="fas fa-list me-1"></i>All Locations
+        </a>
       </div>
+    </div>
   </div>
 </nav>
-<div class="container">
+
+<div class="container mt-4">
   <router-outlet></router-outlet>
 </div>
-<footer class="bg-body-tertiary text-center text-lg-start fixed-bottom">
-  <div class="text-center p-3" style="background-color: #f50057;">
-    © 2023 Copyright:
-    <a class="text-body" href="https://www.linkedin.com/in/hajar-ait-abdielmomin-98638421b">Hajar Ait abdielmomin</a>
+
+<footer class="glass text-center py-4 mt-5" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border-top: 1px solid rgba(255, 255, 255, 0.2);">
+  <div class="container">
+    <p class="text-white mb-2">
+      <i class="fas fa-heart text-danger me-1"></i>
+      Made by
+      <a href="https://www.linkedin.com/in/hajar-ait-abdielmomin-98638421b" class="text-white fw-bold text-decoration-none">
+        Hajar Ait Abdielmomin
+      </a>
+    </p>
+    <p class="text-white-50 small mb-0">© 2024 Locations Hub. All rights reserved.</p>
   </div>
 </footer>
 

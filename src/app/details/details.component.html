@@ -1,29 +1,90 @@
-<br>
-<h3 style="text-align: center">Location details</h3>
-<br>
-<div *ngIf="locationDetails" class="card mb-3" style="width: 60%;margin-left: 22%">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{locationDetails.photo}}" class="img-fluid rounded-start" alt="image">
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="text-center mb-4">
+      <h1 class="text-gradient fw-bold mb-3">
+        <i class="fas fa-info-circle me-3"></i>Location Details
+      </h1>
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{locationDetails.name}}</h5>
-        <p class="card-text"><strong>City : </strong>{{locationDetails.city}}</p>
-        <p class="card-text"><strong>State : </strong>{{locationDetails.state}}</p>
-        <p class="card-text"><strong>Available Units:</strong> {{ locationDetails.availableUnits }}</p>
-        <p class="card-text">
-          <ng-container *ngIf="locationDetails.wifi !== undefined">
-            <p *ngIf="locationDetails.wifi">WiFi Available</p>
-            <p *ngIf="!locationDetails.wifi">WiFi Not Available</p>
-          </ng-container>
-        </p>
-        <p class="card-text">
-          <ng-container *ngIf="locationDetails.laundry !== undefined">
-            <p *ngIf="locationDetails.laundry">Laundry Available</p>
-            <p *ngIf="!locationDetails.laundry">Laundry Not Available</p>
-          </ng-container>
-        </p>
+
+    <div *ngIf="locationDetails" class="card shadow-modern">
+      <div class="row g-0">
+        <div class="col-md-5">
+          <img [src]="locationDetails.photo" class="img-fluid h-100 w-100" style="object-fit: cover; border-radius: 20px 0 0 20px;" alt="Location image">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body p-4">
+            <h2 class="card-title text-gradient fw-bold mb-4">{{locationDetails.name}}</h2>
+            
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fas fa-city text-primary me-3 fs-5"></i>
+                  <div>
+                    <small class="text-muted d-block">City</small>
+                    <span class="fw-500">{{locationDetails.city}}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-sm-6">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fas fa-flag text-success me-3 fs-5"></i>
+                  <div>
+                    <small class="text-muted d-block">State</small>
+                    <span class="badge bg-primary rounded-pill">{{locationDetails.state}}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-sm-6">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fas fa-home text-warning me-3 fs-5"></i>
+                  <div>
+                    <small class="text-muted d-block">Available Units</small>
+                    <span class="fw-500 fs-5">{{locationDetails.availableUnits}}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-12">
+                <div class="row g-2">
+                  <div class="col-sm-6">
+                    <div class="d-flex align-items-center p-3 rounded-3" [ngClass]="locationDetails.wifi ? 'bg-success bg-opacity-10' : 'bg-danger bg-opacity-10'">
+                      <i class="fas fa-wifi me-3 fs-5" [ngClass]="locationDetails.wifi ? 'text-success' : 'text-danger'"></i>
+                      <div>
+                        <small class="text-muted d-block">WiFi</small>
+                        <span class="fw-500" [ngClass]="locationDetails.wifi ? 'text-success' : 'text-danger'">
+                          {{locationDetails.wifi ? 'Available' : 'Not Available'}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-sm-6">
+                    <div class="d-flex align-items-center p-3 rounded-3" [ngClass]="locationDetails.laundry ? 'bg-success bg-opacity-10' : 'bg-danger bg-opacity-10'">
+                      <i class="fas fa-tshirt me-3 fs-5" [ngClass]="locationDetails.laundry ? 'text-success' : 'text-danger'"></i>
+                      <div>
+                        <small class="text-muted d-block">Laundry</small>
+                        <span class="fw-500" [ngClass]="locationDetails.laundry ? 'text-success' : 'text-danger'">
+                          {{locationDetails.laundry ? 'Available' : 'Not Available'}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-3 border-top">
+              <a routerLink="/list" class="btn btn-modern me-2">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
+              </a>
+              <a [routerLink]="'/update/' + locationDetails.id" class="btn btn-outline-primary rounded-pill">
+                <i class="fas fa-edit me-2"></i>Edit Location
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -40,7 +40,7 @@ export class UpdateItemComponent implements OnInit{
         name : new FormControl(result['name']),
         city :new FormControl(result['city']),
         state :new FormControl(result['state']),
-        photo : new FormControl(),
+        photo : new FormControl(result['photo']),
         availableUnits : new FormControl(result['availableUnits']),
         wifi: new FormControl(result['wifi']  ? 'True' : 'False'),
         laundry : new FormControl(result['laundry'] ? 'True' : 'False')

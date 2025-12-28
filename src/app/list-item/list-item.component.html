@@ -1,60 +1,70 @@
-<br>
-<h3 style="text-align: center">List of locations</h3>
-<br>
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-  </symbol>
-</svg>
-<div *ngIf="alert" class="alert alert-success d-flex align-items-center justify-content-between" role="alert">
-  <div class="d-flex align-items-center">
-    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-      <use xlink:href="#check-circle-fill"/>
-    </svg>
-    <div>
-      A location has been deleted successfully!
+<div class="row justify-content-center">
+  <div class="col-12">
+    <div class="text-center mb-5">
+      <h1 class="text-gradient fw-bold mb-3">
+        <i class="fas fa-building me-3"></i>Discover Amazing Locations
+      </h1>
+      <p class="text-white fs-5 opacity-75">Find your perfect place to call home</p>
+    </div>
+
+    <!-- Success Alert -->
+    <div *ngIf="alert" class="alert alert-success d-flex align-items-center justify-content-between shadow-modern" role="alert">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-check-circle me-3 fs-4"></i>
+        <div class="fw-500">Location deleted successfully!</div>
+      </div>
+      <button (click)="closeAlert()" type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+    </div>
+
+    <!-- Modern Table Card -->
+    <div class="card shadow-modern">
+      <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px 20px 0 0;">
+        <h4 class="text-white mb-0 fw-600">
+          <i class="fas fa-map-marked-alt me-2"></i>All Locations
+        </h4>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th class="fw-600"><i class="fas fa-hashtag me-2"></i>ID</th>
+                <th class="fw-600"><i class="fas fa-home me-2"></i>Name</th>
+                <th class="fw-600"><i class="fas fa-city me-2"></i>City</th>
+                <th class="fw-600"><i class="fas fa-flag me-2"></i>State</th>
+                <th class="fw-600"><i class="fas fa-image me-2"></i>Photo</th>
+                <th class="fw-600"><i class="fas fa-cogs me-2"></i>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let l of collection" class="align-middle">
+                <td class="fw-500">{{l.id}}</td>
+                <td class="fw-500">{{l.name}}</td>
+                <td>{{l.city}}</td>
+                <td>
+                  <span class="badge bg-primary rounded-pill">{{l.state}}</span>
+                </td>
+                <td>
+                  <img [src]="l.photo" class="rounded-3 shadow-sm" height="60" width="80" style="object-fit: cover;"/>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button (click)="removeLocation(l.id)" class="btn btn-outline-danger btn-sm rounded-pill" title="Delete location">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <a [routerLink]="'/update/' + l.id" class="btn btn-outline-warning btn-sm rounded-pill" title="Edit location">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <a [routerLink]="'/details/' + l.id" class="btn btn-outline-info btn-sm rounded-pill" title="View details">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-  <button (click)="closeAlert()"  type="button" class="btn-close" aria-label="Close"></button>
 </div>
-
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">id</th>
-    <th scope="col">Name</th>
-    <th scope="col">City</th>
-    <th scope="col">State</th>
-    <th scope="col">Photo</th>
-    <th scope="col">Perform action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let l of collection">
-    <th scope="row">{{l.id}}</th>
-    <td>{{l.name}}</td>
-    <td>{{l.city}}</td>
-    <td>{{l.state}}</td>
-    <td>
-      <img src="{{l.photo}}" height="75px" width="80px"/>
-    </td>
-    <td>
-      <div >
-        <i (click)="removeLocation(l.id)"  title="Delete this location" class="fa fa-trash" style="font-size:25px;color:red;"></i>
-        <a routerLink="/update/{{l.id}}">
-           <i title="Edit" class="fa fa-edit" style="font-size:25px;color:yellow;margin-left: 3%;margin-top:6%"></i>
-        </a>
-        <a routerLink="/details/{{l.id}}">
-        <i title="More details" class="fa fa-file" style="font-size:25px;color:deepskyblue;margin-left: 3%;margin-top:6%"></i>
-        </a>
-        <!--
-         <a class="btn btn-primary" href="#">Details</a> &nbsp;
-        <a class="btn btn-danger" href="#">Delete</a> &nbsp;
-        <a class="btn btn-warning" href="#">Update</a>
-         -->&nbsp;
-      </div>
-    </td>
-  </tr>
-
-  </tbody>
-</table>
